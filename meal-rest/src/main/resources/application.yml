@@ -1,0 +1,21 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /sell
+
+spring:
+  dubbo:
+    application:
+      name: order-service
+    registry:
+      address: zookeeper://127.0.0.1:2181
+    scan: com.joy.order
+  jackson:
+    default-property-inclusion: non_null
+
+wechat:
+  mpAppId: wx3e8c175a3509bc3f
+  mpAppSecret: 1d44927d9c2f2fe0239a6144f2e31bfe
+
+
+

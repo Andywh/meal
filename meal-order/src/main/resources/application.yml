@@ -1,0 +1,52 @@
+server:
+  port: 8284 #项目端口
+
+mybatis-plus:
+  mapper-locations: classpath*:com/joy/order/dao/mapping/*.xml
+  typeAliasesPackage: com.joy.order.model
+  global-config:
+    id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: false
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: false
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+spring:
+  application:
+    name: order-rpc
+  dubbo:
+    server: true
+    registry: zookeeper://localhost:2181
+    protocol:
+      name: dubbo
+      port: 20883
+#      serialization: kryo
+  datasource:
+    #      url: jdbc:mysql://127.0.0.1:3306/guns_rest?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://127.0.0.1:3306/sell_app?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+    filters: log4j,wall,mergeStat
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+#logging:
+#  level.root: info
+#  level.com.stylefeng: debug
+#  path: logs/
+#  file: guns-rest.log
+
+wechat:
+  mpAppId: wxd898fcb01713c658
+#  mpAppId: wx3e8c175a3509bc3f
+  mpAppSecret: 1d44927d9c2f2fe0239a6144f2e31bfe
+  mchId: 1483469312
+  mchKey: C5245D70627C1F8E9964D494B0735025
+  keyPath: /Users/xmly/Documents/learn/dubbo/meal/meal-order/src/main/resources/h5.p12
+  notifyUrl: http://henhaoji.nat300.top/sell/pay/notify/
+#  openid: oTgZpwcTd3dzLaO4BZLZpxRs-DvY
+
